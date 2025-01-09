@@ -1,8 +1,16 @@
+import express, { Request, Response, NextFunction } from 'express';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import app from "./app";
+import logger from "./utils/logger";
 
 dotenv.config();
+
+// Middleware to log all incoming requests
+app.use((req: Request, res: Response, next: NextFunction) => {
+  logger.info(`[${req.method}] ${req.originalUrl}`);
+  next();
+});
 
 const port: number = parseInt(process.env.PORT || "4500", 10);
 
