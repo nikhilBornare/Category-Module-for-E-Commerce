@@ -7,7 +7,7 @@ export interface ICategory extends Document {
   description: string;
   status: "active" | "inactive"; // Enum: status must be either active or inactive
   stock_availability: boolean;
-  children: mongoose.Types.ObjectId[]; // Array of references to child categories
+  subCategory: mongoose.Types.ObjectId[]; // Array of references to child categories
   createdAt?: Date; // Auto-generated timestamp
   updatedAt?: Date; // Auto-generated timestamp
 }
@@ -39,7 +39,7 @@ const CategorySchema: Schema<ICategory> = new Schema(
       type: Boolean,
       default: false,
     },
-    children: [
+    subCategory: [
       {
         type: Schema.Types.ObjectId,
         ref: "Category",

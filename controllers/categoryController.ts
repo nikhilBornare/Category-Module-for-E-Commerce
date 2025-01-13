@@ -25,7 +25,7 @@ export const createCategory = catchAsync(async (req: Request, res: Response, nex
   if (parentId) {
     await Category.findByIdAndUpdate(
       parentId,
-      { $push: { children: category._id } },
+      { $push: { subCategory: category._id } },
       { new: true, runValidators: true }
     );
     logger.info(`Parent category updated with child ID: ${category._id}`);
@@ -39,19 +39,19 @@ export const createCategory = catchAsync(async (req: Request, res: Response, nex
 // Create multiple categories
 export const createMultipleChildCategory = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   logger.info("Starting multiple category creation...");
-  const { children } = req.body;
+  const { subCategory } = req.body;
 
-  if (!Array.isArray(children)) {
-    logger.error("Children provided is not an array");
-    return next(new AppError("Please provide an array of children to create", 400));
+  if (!Array.isArray(subCategory)) {
+    logger.error("subCategory provided is not an array");
+    return next(new AppError("Please provide an array of subCategory to create", 400));
   }
 
-  if (children.some((c: any) => !c.parentId)) {
-    logger.error("One or more children do not have a parentId");
+  if (subCategory.some((c: any) => !c.parentId)) {
+    logger.error("One or more subCategory do not have a parentId");
     return next(new AppError("Please provide a parentId for each child category", 400));
   }
 
-  const parentIds = children.map((c: any) => c.parentId);
+  const parentIds = subCategory.map((c: any) => c.parentId);
   const parentDocs = await Category.find({ _id: { $in: parentIds } });
 
   if (parentDocs.length !== new Set(parentIds).size) {
@@ -60,12 +60,12 @@ export const createMultipleChildCategory = catchAsync(async (req: Request, res: 
   }
 
   const createdCategories: any[] = [];
-  for (const childData of children) {
+  for (const childData of subCategory) {
     const category = await Category.create(childData);
     logger.info(`Child category created with ID: ${category._id}`);
     await Category.findByIdAndUpdate(
       childData.parentId,
-      { $push: { children: category._id } },
+      { $push: { subCategory: category._id } },
       { new: true, runValidators: true }
     );
     logger.info(`Parent category updated with child ID: ${category._id}`);
@@ -88,23 +88,23 @@ export const getCategories = catchAsync(async (req: Request, res: Response, next
     {
       $lookup: {
         from: "categories",
-        localField: "children",
+        localField: "subCategory",
         foreignField: "_id",
-        as: "children",
+        as: "subCategory",
         pipeline: [
           {
             $lookup: {
               from: "categories",
-              localField: "children",
+              localField: "subCategory",
               foreignField: "_id",
-              as: "children",
+              as: "subCategory",
               pipeline: [
                 {
                   $lookup: {
                     from: "categories",
-                    localField: "children",
+                    localField: "subCategory",
                     foreignField: "_id",
-                    as: "children",
+                    as: "subCategory",
                   },
                 },
               ],
@@ -133,23 +133,23 @@ export const getCategoryByID = catchAsync(async (req: Request, res: Response, ne
     {
       $lookup: {
         from: "categories",
-        localField: "children",
+        localField: "subCategory",
         foreignField: "_id",
-        as: "children",
+        as: "subCategory",
         pipeline: [
           {
             $lookup: {
               from: "categories",
-              localField: "children",
+              localField: "subCategory",
               foreignField: "_id",
-              as: "children",
+              as: "subCategory",
               pipeline: [
                 {
                   $lookup: {
                     from: "categories",
-                    localField: "children",
+                    localField: "subCategory",
                     foreignField: "_id",
-                    as: "children",
+                    as: "subCategory",
                   },
                 },
               ],
@@ -207,9 +207,9 @@ export const deleteCategory = catchAsync(async (req: Request, res: Response, nex
     return next(new AppError("Category not found, please provide valid ID", 404));
   }
 
-  if (category.children.length) {
+  if (category.subCategory.length) {
     logger.error("Attempt to delete category with child categories");
-    return next(new AppError("This category has child categories. Please delete the children first.", 400));
+    return next(new AppError("This category has child categories. Please delete the subCategory first.", 400));
   }
 
   await Category.findByIdAndDelete(req.params.id);
@@ -238,9 +238,9 @@ export const deleteMultipleCategory = catchAsync(async (req: Request, res: Respo
     return next(new AppError("No categories found with the provided IDs", 404));
   }
 
-  if (category.some((cat) => cat.children.length)) {
+  if (category.some((cat) => cat.subCategory.length)) {
     logger.error("Attempt to delete categories with child categories");
-    return next(new AppError("Some categories have child categories. Please delete the children first.", 400));
+    return next(new AppError("Some categories have child categories. Please delete the subCategory first.", 400));
   }
 
   const parentUpdates = category
@@ -248,12 +248,12 @@ export const deleteMultipleCategory = catchAsync(async (req: Request, res: Respo
     .map((cat) => ({
       updateOne: {
         filter: { _id: cat.parentId },
-        update: { $pull: { children: cat._id } },
+        update: { $pull: { subCategory: cat._id } },
       },
     }));
 
   if (parentUpdates.length > 0) {
-    logger.info("Updating parent categories to remove children references", { parentUpdates });
+    logger.info("Updating parent categories to remove subCategory references", { parentUpdates });
     await Category.bulkWrite(parentUpdates);
   }
 
@@ -284,23 +284,23 @@ export const searchCategory = catchAsync(async (req: Request, res: Response, nex
     {
       $lookup: {
         from: "categories",
-        localField: "children",
+        localField: "subCategory",
         foreignField: "_id",
-        as: "children",
+        as: "subCategory",
         pipeline: [
           {
             $lookup: {
               from: "categories",
-              localField: "children",
+              localField: "subCategory",
               foreignField: "_id",
-              as: "children",
+              as: "subCategory",
               pipeline: [
                 {
                   $lookup: {
                     from: "categories",
-                    localField: "children",
+                    localField: "subCategory",
                     foreignField: "_id",
-                    as: "children",
+                    as: "subCategory",
                   },
                 },
               ],
