@@ -107,10 +107,25 @@ export const getCategories = catchAsync(async (req: Request, res: Response, next
                     as: "subCategory",
                   },
                 },
+                {
+                  $project: {
+                    _id: 0, // Exclude _id field from sub-subcategories
+                  },
+                },
               ],
             },
           },
+          {
+            $project: {
+              _id: 0, // Exclude _id field from subcategories
+            },
+          },
         ],
+      },
+    },
+    {
+      $project: {
+        _id: 0, // Exclude _id field from main categories
       },
     },
     ...features.getPipeline(),
@@ -124,6 +139,7 @@ export const getCategories = catchAsync(async (req: Request, res: Response, next
   res.status(200).json({ status: "Success", results: categories.length, data: categories });
   logger.info(`Fetched ${categories.length} categories successfully`);
 });
+
 
 // Get category by ID
 export const getCategoryByID = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -152,10 +168,25 @@ export const getCategoryByID = catchAsync(async (req: Request, res: Response, ne
                     as: "subCategory",
                   },
                 },
+                {
+                  $project:{
+                    _id:0,   // Exclude _id field from sub-subcategories
+                  },
+                },
               ],
             },
           },
+          {
+            $project:{
+              _id:0,  // Exclude _id field from subcategories
+            },
+          },
         ],
+      },
+    },
+    {
+      $project:{
+        _id:0,    // Exclude _id field from the main category
       },
     },
   ]);
