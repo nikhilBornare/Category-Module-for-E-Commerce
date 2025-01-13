@@ -7,7 +7,7 @@ import {
   deleteCategory,
   deleteMultipleCategory,
   searchCategory,
-  createMultipleChildCategory
+  createMultipleSubCategory
 } from "../controllers/categoryController";
 
 import {validateCategory} from "../validation/validationSchema";
@@ -16,7 +16,7 @@ const router: Router = Router();
 
 // Routes for category management
 router.post("/createCategory",validateCategory, createCategory);
-router.post("/createMultipleChildCategory", createMultipleChildCategory);
+router.post("/createMultipleSubCategory", createMultipleSubCategory);
 router.get("/getParentById/:id", getCategoryByID);
 router.patch("/updateCategory/:id",validateCategory, updateCategory);
 router.get("/allCategories", getCategories);

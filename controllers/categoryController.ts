@@ -1,4 +1,4 @@
-import e, { Request, Response, NextFunction } from "express";
+import  { Request, Response, NextFunction } from "express";
 import Category from "../models/categoryModel";
 import APIFeatures from "../utils/APIFeatures";
 import AppError from "../utils/AppError";
@@ -37,7 +37,7 @@ export const createCategory = catchAsync(async (req: Request, res: Response, nex
 
 
 // Create multiple categories
-export const createMultipleChildCategory = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+export const createMultipleSubCategory = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   logger.info("Starting multiple category creation...");
   const { subCategory } = req.body;
 

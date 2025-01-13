@@ -35,3 +35,53 @@
 2025-01-13 14:30:21 [INFO]: Category fetched successfully: 677f762112045323dda00359
 2025-01-13 14:30:41 [INFO]: Fetching category by ID: 677f762112045323dda00359
 2025-01-13 14:30:41 [INFO]: Category fetched successfully: 677f762112045323dda00359
+2025-01-13 14:36:44 [INFO]: Deleting category with ID: 677f7a2b12045323dda00374
+2025-01-13 14:36:44 [INFO]: Category deleted successfully: 677f7a2b12045323dda00374
+2025-01-13 14:37:14 [INFO]: Starting category creation...
+2025-01-13 14:37:14 [INFO]: Category created with ID: 6784d7c200941f5cc467e400
+2025-01-13 14:37:14 [INFO]: Parent category updated with child ID: 6784d7c200941f5cc467e400
+2025-01-13 14:37:14 [INFO]: Category creation process completed successfully.
+2025-01-13 14:38:10 [INFO]: Updating category with ID: 677f77fa12045323dda00360
+2025-01-13 14:38:10 [INFO]: Category updated successfully: 677f77fa12045323dda00360
+2025-01-13 14:38:29 [INFO]: Fetching all categories...
+2025-01-13 14:38:30 [INFO]: Fetched 6 categories successfully
+2025-01-13 14:42:52 [INFO]: Fetching all categories...
+2025-01-13 14:42:52 [INFO]: Fetched 6 categories successfully
+2025-01-13 14:44:22 [INFO]: Received request to delete multiple categories
+2025-01-13 14:44:22 [INFO]: Fetched categories for deletion
+2025-01-13 14:44:22 [INFO]: Updating parent categories to remove subCategory references
+2025-01-13 14:44:23 [INFO]: Categories deleted successfully
+2025-01-13 14:44:38 [INFO]: Starting multiple category creation...
+2025-01-13 14:44:38 [ERROR]: subCategory provided is not an array
+2025-01-13 14:44:52 [INFO]: Starting multiple category creation...
+2025-01-13 14:44:52 [INFO]: Child category created with ID: 6784d98c00941f5cc467e40b
+2025-01-13 14:44:52 [INFO]: Parent category updated with child ID: 6784d98c00941f5cc467e40b
+2025-01-13 14:44:52 [INFO]: Child category created with ID: 6784d98c00941f5cc467e40e
+2025-01-13 14:44:52 [INFO]: Parent category updated with child ID: 6784d98c00941f5cc467e40e
+2025-01-13 14:45:39 [INFO]: Fetching all categories...
+2025-01-13 14:45:39 [INFO]: Fetched 6 categories successfully
+2025-01-13 14:45:53 [INFO]: Received request to search categories
+2025-01-13 14:45:53 [INFO]: Performing search with regex
+2025-01-13 14:45:53 [INFO]: Search query result
+2025-01-13 14:45:53 [INFO]: Search response sent successfully
+2025-01-13 14:46:13 [INFO]: Fetching all categories...
+2025-01-13 14:46:13 [INFO]: Fetched 1 categories successfully
+2025-01-13 14:46:49 [INFO]: Fetching all categories...
+2025-01-13 14:46:49 [INFO]: Fetched 2 categories successfully
+2025-01-13 14:47:04 [INFO]: Fetching all categories...
+2025-01-13 14:47:04 [INFO]: Fetched 5 categories successfully
+2025-01-13 14:47:13 [INFO]: Fetching all categories...
+2025-01-13 14:47:13 [INFO]: Fetched 5 categories successfully
+2025-01-13 15:04:20 [INFO]: Fetching all categories...
+2025-01-13 15:04:20 [INFO]: Fetched 6 categories successfully
+2025-01-13 15:06:26 [INFO]: Fetching all categories...
+2025-01-13 15:06:26 [INFO]: Fetched 6 categories successfully
+2025-01-13 15:07:21 [INFO]: Received request to delete multiple categories
+2025-01-13 15:07:21 [INFO]: Fetched categories for deletion
+2025-01-13 15:07:21 [INFO]: Updating parent categories to remove subCategory references
+2025-01-13 15:07:21 [INFO]: Categories deleted successfully
+2025-01-13 15:07:35 [INFO]: Starting multiple category creation...
+2025-01-13 15:07:35 [INFO]: Child category created with ID: 6784dedffff5e0b980bc2d62
+2025-01-13 15:07:35 [INFO]: Parent category updated with child ID: 6784dedffff5e0b980bc2d62
+2025-01-13 15:07:35 [INFO]: Child category created with ID: 6784dedffff5e0b980bc2d65
+2025-01-13 15:07:35 [INFO]: Parent category updated with child ID: 6784dedffff5e0b980bc2d65
