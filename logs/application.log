@@ -85,3 +85,7 @@
 2025-01-13 15:07:35 [INFO]: Parent category updated with child ID: 6784dedffff5e0b980bc2d62
 2025-01-13 15:07:35 [INFO]: Child category created with ID: 6784dedffff5e0b980bc2d65
 2025-01-13 15:07:35 [INFO]: Parent category updated with child ID: 6784dedffff5e0b980bc2d65
+2025-01-13 15:26:31 [INFO]: Received request to search categories
+2025-01-13 15:26:31 [INFO]: Performing search with regex
+2025-01-13 15:26:31 [INFO]: Search query result
+2025-01-13 15:26:31 [INFO]: Search response sent successfully

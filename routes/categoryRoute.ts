@@ -22,6 +22,6 @@ router.patch("/updateCategory/:id",validateCategory, updateCategory);
 router.get("/allCategories", getCategories);
 router.delete("/deleteCategoryById/:id", deleteCategory);
 router.delete("/deleteCategoriesById", deleteMultipleCategory);
-router.get("/searchByChildName/:key", searchCategory);
+router.get("/searchBySubCategoryName/:key", searchCategory);
 
 export default router;
