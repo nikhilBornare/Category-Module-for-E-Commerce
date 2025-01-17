@@ -107,27 +107,12 @@ export const getCategories = catchAsync(async (req: Request, res: Response, next
                     as: "subCategory",
                   },
                 },
-                // {
-                //   $project: {
-                //     _id: 0, // Exclude _id field from sub-subcategories
-                //   },
-                // },
               ],
             },
           },
-          // {
-          //   $project: {
-          //     _id: 0, // Exclude _id field from subcategories
-          //   },
-          // },
         ],
       },
     },
-    // {
-    //   $project: {
-    //     _id: 0, // Exclude _id field from main categories
-    //   },
-    // },
     ...features.getPipeline(),
   ]);
 
@@ -168,27 +153,12 @@ export const getCategoryByID = catchAsync(async (req: Request, res: Response, ne
                     as: "subCategory",
                   },
                 },
-                // {
-                //   $project:{
-                //     _id:0,   // Exclude _id field from sub-subcategories
-                //   },
-                // },
               ],
             },
           },
-          // {
-          //   $project:{
-          //     _id:0,  // Exclude _id field from subcategories
-          //   },
-          // },
         ],
       },
     },
-    // {
-    //   $project:{
-    //     _id:0,    // Exclude _id field from the main category
-    //   },
-    // },
   ]);
 
   if (!category.length) {
