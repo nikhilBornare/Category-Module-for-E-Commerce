@@ -89,3 +89,12 @@
 2025-01-13 15:26:31 [INFO]: Performing search with regex
 2025-01-13 15:26:31 [INFO]: Search query result
 2025-01-13 15:26:31 [INFO]: Search response sent successfully
+2025-01-17 15:05:36 [INFO]: Fetching all categories...
+2025-01-17 15:06:18 [INFO]: Fetching all categories...
+2025-01-17 15:06:18 [INFO]: Fetched 6 categories successfully
+2025-01-17 15:07:11 [INFO]: Fetching all categories...
+2025-01-17 15:07:11 [INFO]: Fetched 6 categories successfully
+2025-01-17 15:07:45 [INFO]: Fetching category by ID: 677f762112045323dda00359
+2025-01-17 15:07:45 [INFO]: Category fetched successfully: 677f762112045323dda00359
+2025-01-17 15:08:40 [INFO]: Fetching category by ID: 677f762112045323dda00359
+2025-01-17 15:08:40 [INFO]: Category fetched successfully: 677f762112045323dda00359
