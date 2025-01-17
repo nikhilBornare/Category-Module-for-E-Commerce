@@ -98,3 +98,16 @@
 2025-01-17 15:07:45 [INFO]: Category fetched successfully: 677f762112045323dda00359
 2025-01-17 15:08:40 [INFO]: Fetching category by ID: 677f762112045323dda00359
 2025-01-17 15:08:40 [INFO]: Category fetched successfully: 677f762112045323dda00359
+2025-01-17 15:47:18 [INFO]: Updating category with ID: 677f77fa12045323dda00360
+2025-01-17 15:47:30 [INFO]: Updating category with ID: 677f795c12045323dda00368
+2025-01-17 15:47:30 [INFO]: Category updated successfully: 677f795c12045323dda00368
+2025-01-17 15:47:43 [INFO]: Fetching all categories...
+2025-01-17 15:47:43 [INFO]: Fetched 6 categories successfully
+2025-01-17 15:49:24 [INFO]: Fetching all categories...
+2025-01-17 15:49:25 [INFO]: Fetched 6 categories successfully
+2025-01-17 15:51:49 [INFO]: Fetching category by ID: 677f762112045323dda00359
+2025-01-17 15:51:49 [INFO]: Category fetched successfully: 677f762112045323dda00359
+2025-01-17 15:52:04 [INFO]: Fetching category by ID: 677f795c12045323dda00368
+2025-01-17 15:52:04 [INFO]: Category fetched successfully: 677f795c12045323dda00368
+2025-01-17 15:52:09 [INFO]: Fetching category by ID: 677f762112045323dda00359
+2025-01-17 15:52:09 [INFO]: Category fetched successfully: 677f762112045323dda00359

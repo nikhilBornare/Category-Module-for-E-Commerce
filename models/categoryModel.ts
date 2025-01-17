@@ -60,6 +60,12 @@ CategorySchema.pre("save",function(next){
 next();
 })
 
+CategorySchema.pre(/^find/, async function (next) {
+  const query = this as mongoose.Query<any, any>;
+  query.populate("subCategory"); // Populate both parent and subCategory
+  next();
+});
+
 // Create and export the model
 const Category: Model<ICategory> = model<ICategory>("Category", CategorySchema);
 

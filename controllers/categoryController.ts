@@ -80,94 +80,28 @@ export const createMultipleSubCategory = catchAsync(async (req: Request, res: Re
 
 // Get all categories
 export const getCategories = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  logger.info("Fetching all categories...");
-  const features = new APIFeatures(req.query).Filtering().paginate().fieldLimit().sorting();
+  const features = new APIFeatures(Category.find({parentId:"0"}),req.query).Filtering().paginate().fieldLimit().sorting();
 
-  const categories = await Category.aggregate([
-    { $match: { parentId: "0" } },
-    {
-      $lookup: {
-        from: "categories",
-        localField: "subCategory",
-        foreignField: "_id",
-        as: "subCategory",
-        pipeline: [
-          {
-            $lookup: {
-              from: "categories",
-              localField: "subCategory",
-              foreignField: "_id",
-              as: "subCategory",
-              pipeline: [
-                { 
-                  $lookup: {
-                    from: "categories",
-                    localField: "subCategory",
-                    foreignField: "_id",
-                    as: "subCategory",
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    ...features.getPipeline(),
-  ]);
+  const categories = await features.query;
 
   if (!categories.length) {
-    logger.error("No categories found");
     return next(new AppError("No categories found", 404));
   }
 
   res.status(200).json({ status: "Success", results: categories.length, data: categories });
-  logger.info(`Fetched ${categories.length} categories successfully`);
 });
 
 
 // Get category by ID
 export const getCategoryByID = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  logger.info(`Fetching category by ID: ${req.params.id}`);
-  const category = await Category.aggregate([
-    { $match: { _id: new mongoose.Types.ObjectId(req.params.id) } },
-    {
-      $lookup: {
-        from: "categories",
-        localField: "subCategory",
-        foreignField: "_id",
-        as: "subCategory",
-        pipeline: [
-          {
-            $lookup: {
-              from: "categories",
-              localField: "subCategory",
-              foreignField: "_id",
-              as: "subCategory",
-              pipeline: [
-                {
-                  $lookup: {
-                    from: "categories",
-                    localField: "subCategory",
-                    foreignField: "_id",
-                    as: "subCategory",
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ]);
+  
+  const category = await Category.findById(req.params.id);
 
-  if (!category.length) {
-    logger.error(`Category not found with ID: ${req.params.id}`);
+  if (!category) {
     return next(new AppError("Category not found with the provided ID.", 404));
   }
 
   res.status(200).json({ status: "Success", data: category });
-  logger.info(`Category fetched successfully: ${req.params.id}`);
 });
 
 // Update category
